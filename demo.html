@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="bubble.js"></script>
+    <script src="choseSort.js"></script>
+    <script src="quickSort.js"></script>
+    <script>
+        var arr = new Array(1000);
+        for(var i = 0; i < arr.length; i++) {
+            arr[i] = Math.floor(Math.random() * 1000);
+        }
+        console.time("XXX");
+        for(var i = 0; i < 50; i++) {
+            var brr = arr.slice(0);
+            bubbleSort(brr);
+        }
+        console.timeEnd("XXX");
+        // choseSort(arr);
+        // quickSort(arr);
+    </script>
+</body>
+
+</html>
