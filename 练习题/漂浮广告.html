@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>漂浮广告</title>
+    <style>
+        .box {
+            position: absolute;
+            border: 1px solid #999;
+            padding: 30px 20px;
+        }
+
+        .box a {
+            position: absolute;
+            right: 4px;
+            top: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <a href="javascript:;" class="close" title="关闭弹窗">还剩余<i>60</i> 秒关闭,或者点击关闭</a>
+        <img src="img/logo.png" alt="">
+    </div>
+    <script>
+        var ball = (function () {
+            var speedX = 2,
+                speedY = 2,
+                time = 60;
+            return {
+                init: function (ele) {
+                    this.$ele = document.querySelector(ele);
+                    this.$close = this.$ele.querySelector('a');
+
+                    // 广告浮动
+                    this.active();
+                    // 倒计时开始
+                    this.countDown();
+                    this.event();
+                },
+                event: function () {
+                    var _this = this;
+                    this.$ele.onmouseenter = function() {
+                        _this.stop();
+                    }
+                    this.$ele.onmouseleave = function() {
+                        _this.active();
+                    }
+                    this.$close.onclick = function() {
+                        _this.stop();
+                        // 删除漂浮广告
+                        _this.$ele.remove()
+                    }
+                },
+                //倒计时
+                countDown: function() {
+                    var _this = this;
+                    this.$ele.countTime = setInterval(function() {
+                        time--;
+                        if(time == 0) {
+                            time = 0
+                            clearInterval(_this.$ele.countTime);
+                            // 点击a标签， 进行关闭
+                            _this.$close.click()
+                        }
+                        _this.$close.querySelector('i').innerHTML = time;
+                    }, 1000)
+                },
+                // 广告运动
+                active: function () {
+                    var _this = this;
+                    this.$ele.timer = setInterval(function () {
+                        var maxL = window.innerWidth - _this.$ele.offsetWidth,
+                            maxT = window.innerHeight - _this.$ele.offsetHeight;
+                        var x = _this.$ele.offsetLeft + speedX;
+                        var y = _this.$ele.offsetTop + speedY;
+                        if (x >= maxL) {
+                            x = maxL;
+                            speedX *= -1;
+                        } else if (x <= 0) {
+                            x = 0;
+                            speedX *= -1
+                        }
+                        if (y >= maxT) {
+                            y = maxT;
+                            speedY *= -1;
+                        } else if (y <= 0) {
+                            y = 0;
+                            speedY *= -1;
+                        }
+                        _this.$ele.style.left = x + 'px';
+                        _this.$ele.style.top = y + 'px';
+                    }, 20)
+                },
+                // 广告停止
+                stop: function () {
+                    clearInterval(this.$ele.timer)
+                }
+            }
+        }())
+        ball.init('.box');
+    </script>
+</body>
+
+</html>
