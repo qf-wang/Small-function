@@ -26,39 +26,9 @@
     </style>
 </head>
 <body>
-    <h1 id="content"></h1>
-    <p id="content2">今天天气不错,还可以去吃烧烤，你要跟我一起么,真不错欸,哈哈哈</p>
+    <script src="rewritingArrayMap.js"></script>
     <script>
-        var obj = {
-            content: ' 今天天气不错,还可以去吃烧烤，你要跟我一起么,真不错欸,哈哈哈'
-        }
-        var $conent = document.getElementById('content');
-        var $conent2 = document.getElementById('content2');
-        function parseString(str, obj) {
-            // 判断浏览器版本
-            if(navigator.userAgent.toLocaleLowerCase().indexOf('webkit') === -1) {
-                obj = obj || document
-                // 获取展示宽度
-                var  width = obj.clientWidth;
-                var fontSize = parseInt(getStyle(obj, 'font-size'));
-                var maxLength = Math.floor(width / fontSize * 2);
-                // console.log(width, fontSize)
-                if(str.length > maxLength) {
-                    str = str.substring(0, maxLength - 1) + '....'
-                }
-            }
-            obj.innerHTML = str;
-
-            
-        }
-        parseString(obj.content, $conent);
-        parseString(obj.content, $conent2)
-        function getStyle(ele, attr) {
-            if(window.getComputedStyle) {
-                return window.getComputedStyle(ele, null)[attr];
-            }
-            return ele.currentStyle[attr]
-        }
+       
     </script>
 </body>
 </html>
