@@ -1,6 +1,8 @@
 function LazyLoad(ele, page, pageSize, width) {
     // 图片放入的盒子
     this.imageBox = document.querySelector(ele);
+    // loading框
+    this.loading = this.imageBox.nextElementSibling;
     this.page = page || 1; // 页码
     this.pageSize = pageSize || 40; //每页显示的数量
     // 图片的宽度
@@ -60,11 +62,13 @@ LazyLoad.prototype.getImage = function (words) {
             _this.loadImage(data.data);
         }
     }
+    this.loading.style.display = 'block';
     sendAjax("http://dev.91jianke.com:1091/id_v2_5/search_img", params);
 }
 // 把图片加入到dom中
 LazyLoad.prototype.insertImage = function (arrIamge) {
-    console.log(arrIamge)
+    this.loading.style.display = 'none';
+    // console.log(arrIamge)
     var liAll = this.imageBox.querySelectorAll('li');
     for (var index = 0; index < arrIamge.length; index++) {
         var div = document.createElement('div');
@@ -94,7 +98,7 @@ LazyLoad.prototype.countHeight = function(liAll) {
     arr.sort(function(a, b){
       return a.height -b.height;
     })
-    console.log(arr);
+    // console.log(arr);
     return arr[0].index
 }
 
@@ -111,6 +115,8 @@ LazyLoad.prototype.loadImage = function (data) {
             m++;
             _this.arr.push(this);
             arr.push(this);
+            console.log(m)
+
             if(m == data.length) {
                 _this.insertImage(arr);
             }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.0/css/swiper.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <div class="swiper-container qf-thumb">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide bg-image gintama"></div>
+            <div class="swiper-slide bg-image steinsGate"></div>
+            <div class="swiper-slide bg-image unicorn"></div>
+            <div class="swiper-slide bg-image berserk"></div>
+            <div class="swiper-slide bg-image summerWars"></div>
+            <div class="swiper-slide bg-image akito"></div>
+            <div class="swiper-slide bg-image eva"></div>
+        </div>
+        <div class="swiper-button-prev"></div><!--左箭头-->
+        <div class="swiper-button-next"></div><!--右箭头-->
+    </div>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.0/js/swiper.min.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container',{
+            loop: true,
+            slidesPerView : 4,
+            spaceBetween : 10, // 距离
+            freeMode: true,
+            loopedSlides: 7,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            effect : 'coverflow',
+        });
+    </script>
+
+</body>
+
+</html>

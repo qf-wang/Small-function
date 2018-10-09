@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.0/css/swiper.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        .fullpage {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .fullpage .swiper-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="swiper-container fullpage" >
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <h1>这是第1个DIV</h1>
+            </div>
+            <div class="swiper-slide">
+                <h1>这是第2个DIV</h1>
+            </div>
+            <div class="swiper-slide">
+                <h1>这是第3个DIV</h1>
+            </div>
+            <div class="swiper-slide">
+                <h1>这是第4个DIV</h1>
+            </div>
+            <div class="swiper-slide">
+                <h1>这是第5个DIV</h1>
+            </div>
+            <div class="swiper-slide">
+                <h1>这是第6个DIV</h1>
+            </div>
+           
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.0/js/swiper.min.js"></script>
+    <script>
+        var $banner = document.querySelectorAll('.swiper-slide');
+        for(var i = 0; i < $banner.length; i++) {
+            $banner[i].style.background = getColor();
+        }
+        function getColor() {
+            return '#' +  Math.floor(16**6 * Math.random()).toString(16);
+
+        }
+        var swiper = new Swiper('.swiper-container',{
+            // loop: true,
+            // autoplay: {
+            //     delay: 2000   
+            // },
+            keyboard : true,
+            mousewheel: true,
+            direction: 'vertical',
+            pagination: {
+                el: '.swiper-pagination',
+                clickable :true,
+            }
+        });
+    </script>
+
+</body>
+
+</html>

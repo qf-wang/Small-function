@@ -64,6 +64,28 @@
         box-sizing: content-box;
         box-shadow: 1px 1px 4px 0px rgba(0,0,0,0.8);
       }
+      .loading-box {
+        display: none;
+        margin: 10px auto;
+        text-align: center;
+      }
+      .loading {
+        width: 16px;
+        height: 16px;
+        padding: 16px;
+        border-radius: 50%;
+        margin: 10px auto;
+        border: 8px dashed #000;
+        animation: loading 1s .5s infinite;
+      }
+      @keyframes loading {
+        50% {
+          transform: rotate(180deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
     </style>
   </head>
   <body>
@@ -78,6 +100,10 @@
           <li></li>
           <li></li>
         </ul>
+        <div class="loading-box">
+            <div class="loading"></div>
+            <span>加载中....</span>
+        </div>
       </div>
     <script src="js/ajax2.0.js"></script>
     <script src="js/re_lasy_load.js"></script>
