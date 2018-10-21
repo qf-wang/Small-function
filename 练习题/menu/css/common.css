@@ -1,0 +1,25 @@
+
+.btn {
+    display: inline-block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 400;
+    /* text-align: center; */
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #999;
+  }
+  .btn:focus {
+    outline: none;
+  }
+  .btn-warning {
+      background-color: #f0ad4e
+  }
+  .btn-danger {
+    background-color: #ff6666;
+  }
+  

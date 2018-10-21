@@ -1,108 +1,51 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_732107_ol6bmjr6vf.css"/>
-        <style type="text/css">
 
-			li {
-				list-style: none;
-				background-color: #1b1a1a;
-				color: #efefef;
-				line-height: 40px;
-                cursor: pointer;
-            }
-			li div:hover {
-				background-color: #000;
-				color: #fff;
-				box-shadow: 0 0 10px rgba(0,0,0,0.8);
-                text-shadow: 0 0 2px rgba(255,255,255,0.8);
-			}
-			ul {
-				padding-left: 0;
-				width: 300px;
-				overflow: hidden;
-			}
-			.first i {
-				margin-right: 4px;
-				font-size: 14px;
-			}
-			.second div {
-				padding-left: 28px;
-			}
-			.third div {
-				padding-left: 46px;
-			}
-			.second, .third {
-				/* display: none; */
-			}
-			.qf {
-				float: right;
-				padding-right: 10px;
-			}
-		</style>
-	</head>
-	<body>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_863464_3et1j04urwf.css" />
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/menu.css">
+	<link rel="stylesheet" href="css/model.css">
+</head>
 
-		<ul  class="first">
+<body>
+	<div class="set-menu">
+		<!-- <ul class="menu">
 			<li>
-				<div>一级菜单  <i class="qf qf-shop-plus"></i></div>
-				<ul class="second">
+				<div class="title">
+					<span>一级菜单</span>
+					<small>一级标题说明</small>
+					<i class="qf shop-arrow-down"></i>
+				</div>
+				<ul>	
 					<li>
-						<div>二级菜单</div>
+						<div class="title">
+								<span>二级菜单</span>
+								<small>二级标题说明</small>
+							<button type="button" class="btn btn-warning">弹窗</button>
+						</div>
 					</li>
 					<li>
-						<div>二级菜单</div>
-					</li>
-					<li>
-						<div>二级菜单 <i class="qf qf-shop-plus"></i></div>
-						<ul class="third">
-							<li><div>三级菜单 </div></li>
-							<li><div>三级菜单 </div></li>
-							<li><div>三级菜单 </div></li>
-						</ul>
+						<div class="title">
+								<span>二级菜单</span>
+								<small>二级标题说明</small>
+							<button type="button" class="btn btn-warning">弹窗</button>
+						</div>
 					</li>
 				</ul>
 			</li>
-			<li>
-				<div> 一级菜单 <i class="qf qf-shop-plus"></i></div>
-				<ul class="second">
-					<li>
-						<div>二级菜单 <i class="qf qf-shop-plus"></i></div>
-						<ul class="third">
-							<li><div>三级菜单 </div></li>
-							<li><div>三级菜单 </div></li>
-						</ul>
-					</li>
-				</ul>
-            </li>
-            <li><div> 一级菜单</div></li>
-		</ul>
+		</ul> -->
 
-		<script type="text/javascript" src="jquery.js" ></script>
-		<script type="text/javascript">
-          var menu3 = (function(){
-            var $ulbox = $('.first')
-              return {
-                  init() {
-                      this.events();
-                  },
-                  events() {
-                      var _this = this;
-                      $("li:has(ul)").on("click", function() {
-                          $(this).children("ul").slideToggle();
-                          $(this).children("div").children("i").toggleClass("qf-shop-plus").toggleClass("qf-shop-reduce")
-                      })
-                      $("li").on("click", function(ev) {
-                          ev.stopPropagation();
-                      })
-                  }
+	</div>
 
-              }
-              
-          })()
-          menu3.init()
-		</script>
-	</body>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script src="js/model.js"></script>
+	<script src="js/menu.js"></script>
+	<script type="text/javascript">
+		menu.init()
+	</script>
+</body>
+
 </html>
