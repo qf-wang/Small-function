@@ -5,19 +5,23 @@ var menu = (function () {
             // 菜单栏中显示的标题
             this.getData().then(data => {
                 this.insertData(data);
+                // 所有标题
                 this.$title = this.$ulbox.find('.title');
+                // 所有ul
+                this.$ul = this.$ulbox.find('ul');
                 this.events();
+
+                this.lazyLoding();
             })
         },
         events() {
             var _this = this;
-            this.$ulbox.find("li:has(ul)").on("click", function () {
-                $(this).children("ul").slideToggle();
-                $(this).children("div").children("i").toggleClass("shop-arrow-down").toggleClass("shop-arrow-up");
+            this.$ulbox.find("li:has(ul)>.title").on("click", function () {
+                console.log(1)
+                $(this).next().slideToggle();
+                $(this).children("i").toggleClass("shop-arrow-down").toggleClass("shop-arrow-up");
             })
-            this.$title.on('click', function(ev) {
-                ev.stopPropagation();
-            }).on('click', '.btn', function() {
+            this.$title.on('click', '.btn', function() {
                 // 调用弹窗,显示
                 var model = new Model();
                 // 括号内传入展示内容
@@ -72,18 +76,24 @@ var menu = (function () {
 
         },
         lazyLoding() {
-            
+            const length = this.$ul.each(function(){
+              var length = $(this).children('li').length;
+              if(length > 2) {
+                  //让多于的li隐藏   
+                  $(this).append('<li class="load-more">加载更多</li>');
+              }
+            });
+            $('.load-more').on('click', function() {
+                $(this).css('display', 'none');
+
+            });
         }
+        
     }
 })()
 class menuTree {
-    /* 
-    {
-        target: '' // dom 元素
-    }
-    */
-    constructor(obj) {
-        this.$target = $(obj.target);
+    constructor() {
+       
     }
     //添加数据   
     // 相同样式和属性,递归
@@ -107,13 +117,5 @@ class menuTree {
     //     createDom(frag, data);
     //     console.log(this.$target);
     //     this.$target[0].appendChild(frag);
-    // 特殊结构
-    insertData(data) {
-
-    }
     // }
-    //   懒加载
-    lazyLoding() {
-
-    }
 }

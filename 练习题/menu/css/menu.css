@@ -7,6 +7,11 @@
 .set-menu .menu {
   background-color: #fff;
 }
+.set-menu .menu .load-more {
+  text-align: center;
+  line-height: 40px;
+  background-color: #888;
+}
 .set-menu .menu li {
   list-style: none;
   cursor: pointer;
