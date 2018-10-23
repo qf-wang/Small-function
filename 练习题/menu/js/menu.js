@@ -4,7 +4,7 @@ var menu = (function () {
             this.$ulbox = $('.set-menu');
             // 菜单栏中显示的标题
             this.getData().then(data => {
-                this.insertData(data);
+                this.insertData(this.$ulbox, data, 1);
                 // 所有标题
                 this.$title = this.$ulbox.find('.title');
                 // 所有ul
@@ -21,7 +21,7 @@ var menu = (function () {
                 $(this).next().slideToggle();
                 $(this).children("i").toggleClass("shop-arrow-down").toggleClass("shop-arrow-up");
             })
-            this.$title.on('click', '.btn', function() {
+            this.$title.on('click', '.btn', function () {
                 // 调用弹窗,显示
                 var model = new Model();
                 // 括号内传入展示内容
@@ -43,60 +43,57 @@ var menu = (function () {
 
             })
         },
-        insertFirstData(data) {
-            let ul = $('<ul class="menu"></ul>');
+        insertData(dom, data, levels) {
+            let ul = $('<ul></ul>');
             // ul.className = 'menu';
             // debugger
-            for(var i = 0; i < data.length; i++) {
+            for (var i = 0; i < data.length; i++) {
                 let li = $('<li></li>');
-                let liContent = `<div class="title">
-                                <span>${data[i].name}</span>
-                                <small>${data[i].content}</small>
-                                <i class="qf shop-arrow-down"></i>
-                            </div>`;
+                let liContent = this.dom(data[i].name, data[i].content, levels);
                 li.append(liContent);
                 if (data[0].child) {
-                   
+                    this.insertData(li, data[i].child, 2);
                 }
                 ul.append(li)
             }
-            this.$ulbox.html(ul);
+            dom.append(ul);
 
         },
-        insertSecondData: function(dom, data) {
-            let ul = $('<ul></ul>');
-            for(var j = 0; j < data.length; j++) {
-                let li = $('<li></li>');
-                let liContent = `<div class="title">
-                                        <span>${data[j]}</span>
-                                        <small>${data[j]}</small>
-                                    <button type="button" class="btn btn-warning">弹窗</button>
-                                </div>
-                            `
-                li.append(liContent);
-                ul.append(li);
+        dom: function (name, content, levels) {
+            levels = levels || 1;
+            if (levels == 1) {
+                return `<div class="title">
+                            <span>${name}</span>
+                            <small>${content}</small>
+                            <i class="qf shop-arrow-down"></i>
+                        </div>`
             }
-            dom.append(ul)
+            return `<div class="title">
+                        <span>${name}</span>
+                        <small>${content}</small>
+                        <button type="button" class="btn btn-warning">弹窗</button>
+                    </div>
+                    `
         },
         lazyLoding() {
-            const length = this.$ul.each(function(){
-              var length = $(this).children('li').length;
-              if(length > 2) {
-                  //让多于的li隐藏   
-                  $(this).append('<li class="load-more">加载更多</li>');
-              }
+            const length = this.$ul.each(function () {
+                var length = $(this).children('li').length;
+                if (length > 2) {
+                    //让多于的li隐藏   
+                    $(this).append('<li class="load-more">加载更多</li>');
+                }
             });
-            $('.load-more').on('click', function() {
+            $('.load-more').on('click', function () {
                 $(this).css('display', 'none');
 
             });
         }
-        
+
     }
 })()
 class menuTree {
     constructor() {
-       
+
     }
     //添加数据   
     // 相同样式和属性,递归
