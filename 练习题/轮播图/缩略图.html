@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.0/css/swiper.min.css">
+    <style>
+        .swiper-slide {
+            background-size: cover;
+            background-position: center;
+        }
+
+
+        .swiper-container {
+            width: 790px;
+            height: 592px;
+        }
+
+        #thumbs {
+            height: 160px;
+            box-sizing: border-box;
+            padding: 10px 0;
+        }
+
+        #thumbs .swiper-slide {
+            height: 100%;
+            opacity: 0.4;
+        }
+
+        #thumbs .swiper-slide-thumb-active {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="swiper-container" id="gallery">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background-image:url(images/nature1.jpg)"></div>
+            <div class="swiper-slide" style="background-image:url(images/nature2.png)"></div>
+            <div class="swiper-slide" style="background-image:url(images/nature3.png)"></div>
+            <div class="swiper-slide" style="background-image:url(images/nature4.png)"></div>
+            <div class="swiper-slide" style="background-image:url(images/nature1.jpg)"></div>
+            <div class="swiper-slide" style="background-image:url(images/nature2.png)"></div>
+            <div class="swiper-slide" style="background-image:url(images/nature3.png)"></div>
+            <div class="swiper-slide" style="background-image:url(images/nature4.png)"></div>
+
+        </div>
+        <!-- 如果需要导航按钮 -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <!-- <div class="swiper-pagination"></div> -->
+    </div>
+    <div class="swiper-container" id="thumbs">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background-image:url(images/nature1.jpg)"></div>
+            <div class="swiper-slide" style="background-image:url(images/nature2.png)"></div>
+            <div class="swiper-slide" style="background-image:url(images/nature3.png)"></div>
+            <div class="swiper-slide" style="background-image:url(images/nature4.png)"></div>
+            <div class="swiper-slide" style="background-image:url(images/nature1.jpg)"></div>
+            <div class="swiper-slide" style="background-image:url(images/nature2.png)"></div>
+            <div class="swiper-slide" style="background-image:url(images/nature3.png)"></div>
+            <div class="swiper-slide" style="background-image:url(images/nature4.png)"></div>
+        </div>
+    </div>
+    <script src="http://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.0/js/swiper.js"></script>
+    <script>
+        var thumbsSwiper = new Swiper('#thumbs', {
+            spaceBetween: 10, //小图片中间的间距
+            slidesPerView: 4, // 一次展示四张
+            loop: true, // 循环
+            freeMode: true, // 回弹, 可以移动多张
+            loopedSlides: 4, //looped slides should be the same
+            watchSlidesVisibility: true,
+            watchSlidesProgress: true,
+        })
+        var mySwiper = new Swiper('#gallery', {
+            // slidesPerView: 3, // 同时显示几张
+            autoplay: true,//可选选项，自动滑动
+            // initialSlide: 1, // 默认起始页
+            direction: 'horizontal', // 滚动方向, 默认水平 horizontal, 还有垂直vertical
+            // grabCursor : true, // 图标转换为小手
+            loop: true,
+            // effect : 'cube', // 展示效果
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            thumbs: {
+                swiper: thumbsSwiper,
+            }
+            // 设置分页器,也就是下面的小圆圈
+            // pagination: {
+            //     el: '.swiper-pagination',
+            //     // 点击小圆圈,是否控制轮播图
+            //     clickable: true,
+            // },
+
+        })
+
+
+    </script>
+</body>
+
+</html>
