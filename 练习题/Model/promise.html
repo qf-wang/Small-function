@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // function sendAjax() {
+        //     var xhr = new XMLHttpRequest();
+        //     xhr.open('get', 'xxx/xxx.php', true);
+        //     // xhr.setRequestHeader('')
+        //     xhr.send(null);
+        //     return new Promise(function(resolve, reject) {
+        //         xhr.onreadystatechange = function() {
+        //             if(xhr.readyState != 4) {
+        //                 return;
+        //             }
+        //             if(xhr.status == 200) {
+        //                 var json = xhr.responseText;
+        //                 resolve(json);
+        //             } else {
+        //                 reject('失败');
+        //             }
+        //         }
+        //     })
+        // }
+        
+        // sendAjax().then((data) => {
+        //     console.log(data);
+        // }, msg => {
+        //     console.log(msg);
+        // })
+
+
+        // function fn() {
+        //     return new Promise(function(resolve) {
+        //         setTimeout(function() {
+        //             resolve('haha');
+        //         }, 2000)
+        //     }) 
+        // }
+        // fn().then(msg => {
+        //     console.log(msg);
+        // })
+
+
+        // try {
+        //     console.log(a);
+        // } catch(e) {
+        //     console.log('这是一个错误')
+        // }
+
+
+        var fn =  new Promise(function(resolve) {
+            setTimeout(function() {
+                resolve('xxxxx')
+            }, 2000)
+        }) 
+        var fn2 =  new Promise(function(resolve) {
+            console.log(a);
+            setTimeout(function() {
+                resolve(2)
+            }, 2000)
+        }) 
+        // fn.then(msg => {
+        //     console.log(msg);
+        // }).catch(msg => {
+        //     console.log('错误')
+        // })
+       
+        Promise.all([fn, fn2]).then((arr) => {
+            console.log(arr);
+        }, (msg) => {
+            console.log('aaaaa');
+        })
+    </script>
+</body>
+</html>

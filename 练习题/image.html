@@ -9,26 +9,22 @@
 </head>
 
 <body>
-    <img class="lazy-img" src="xxx.png" attr-src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g5/M00/01/0E/ChMkJ1uYemCIe9CdAAKWD2HK__IAArodgBa0YIAApYn350.jpg" alt="">
+   
     <script>
-        // 图片懒加载
-        // 减少http请求，减少服务器压力。同时也减少资源浪费
-        // 当用户滑倒指定的位置，才加载对应的图片
-        window.scroll = function() {
-            var $imgAll = document.querySelectorAll('.lazy-img');
-            for (var i = 0; i < $imgAll.length; i++) {
-                var top  = $imgAll[i].offsetTop - document.documentElement.scrollTop - window.innerHeight; 
-                if(top < 200) {
-                    $imgAll[i].src = $imgAll[i].getAttribute('attr-src');
-                }
-            }
+        function loadImg(src) {
+            return new Promise(function (resolve, reject) {
+                var $img = document.createElement('img');
+                $img.src = src;
+                image.onload = function () {
+                    resolve(image);
+                };
+
+                image.onerror = function () {
+                    reject(new Error('Could not load image at ' + url));
+                };
+            })
         }
-        var $img = document.createElement('img');
-        $img.src = "https://desk-fd.zol-img.com.cn/t_s960x600c5/g5/M00/01/0E/ChMkJ1uYemCIe9CdAAKWD2HK__IAArodgBa0YIAApYn350.jpg";
-        $img.onload = function() {
-            document.body.appendChild($img);
-        }
-        
+
         // 图片预加载
         // 等所有的图片都加载成功后，在展示页面。
         // 目的： 有的页面依赖图片的展示效果，如果没有完全加载，影响展示效果
