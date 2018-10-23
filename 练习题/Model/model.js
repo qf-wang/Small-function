@@ -20,6 +20,7 @@ var Model = (function() {
     document.body.appendChild(frag);
     this.ele = document.querySelector('.model-dialog');
     this.$btn = this.ele.querySelector('.btn-danger');
+    
     this.$btn.onclick = (function() {
       this.close()
     }).bind(this);

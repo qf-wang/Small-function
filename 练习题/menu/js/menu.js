@@ -43,37 +43,40 @@ var menu = (function () {
 
             })
         },
-        insertData(data) {
+        insertFirstData(data) {
             let ul = $('<ul class="menu"></ul>');
             // ul.className = 'menu';
             // debugger
-            data.forEach((item, index) => {
+            for(var i = 0; i < data.length; i++) {
                 let li = $('<li></li>');
                 let liContent = `<div class="title">
-                                <span>${item.name}</span>
-                                <small>${item.content}</small>
+                                <span>${data[i].name}</span>
+                                <small>${data[i].content}</small>
                                 <i class="qf shop-arrow-down"></i>
                             </div>`;
                 li.append(liContent);
-                if (item.child) {
-                    let ul = $('<ul></ul>');
-                    item.child.forEach((item, index) => {
-                        let li = $('<li></li>');
-                        let liContent = `<div class="title">
-                                                <span>二级菜单</span>
-                                                <small>二级标题说明</small>
-                                            <button type="button" class="btn btn-warning">弹窗</button>
-                                        </div>
-                                    `
-                        li.append(liContent);
-                        ul.append(li);
-                    })
-                    li.append(ul)
+                if (data[0].child) {
+                   
                 }
                 ul.append(li)
-            })
+            }
             this.$ulbox.html(ul);
 
+        },
+        insertSecondData: function(dom, data) {
+            let ul = $('<ul></ul>');
+            for(var j = 0; j < data.length; j++) {
+                let li = $('<li></li>');
+                let liContent = `<div class="title">
+                                        <span>${data[j]}</span>
+                                        <small>${data[j]}</small>
+                                    <button type="button" class="btn btn-warning">弹窗</button>
+                                </div>
+                            `
+                li.append(liContent);
+                ul.append(li);
+            }
+            dom.append(ul)
         },
         lazyLoding() {
             const length = this.$ul.each(function(){

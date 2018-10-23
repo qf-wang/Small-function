@@ -14,10 +14,11 @@
   <script src="model.js"></script>
   <script>
     var model = new Model();
-    var model2 = new Model();
-    console.log(model)
+    model.a = 10
     show.onclick = function(){
-      model2.show()
+      var model2 = new Model()
+      console.log(model2 === model);
+      model.show()
     }
   
   </script>

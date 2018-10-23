@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>promise</title>
+</head>
+<body>
+    <script>
+        // function sendAjax() {
+        //     var xhr = new XMLHttpRequest();
+        //     xhr.open('get', 'xxx/xxx.php', true);
+        //     // xhr.setRequestHeader('xxx', 'xxx');
+        //     xhr.send(null);
+        //     return new Promise(function(resolve, reject) {
+        //         xhr.onreadystatechange = function() {
+        //             if(xhr.readyState != 4) {
+        //                 return
+        //             }
+        //             if(xhr.status == 200) {
+        //                 var json = xhr.responseText;
+        //                 resolve(json)
+        //             } else {
+        //                 reject()
+        //             }
+        //         }
+        //     })
+        // }    
+        // sendAjax().then(data => {
+        //     console.log(data);
+        // }, msg => {
+        //     console.log('失败了')
+        // })
+        
+
+        // var time = new Promise(function(resolve, reject) {
+        //     setTimeout(function() {
+        //         resolve('haha, 我是成功了')
+        //     }, 2000)
+        // }) 
+        // var time2 = new Promise(function(resolve, reject) {
+        //     setTimeout(function() {
+        //         resolve('我也成功了')
+        //     }, 2000)
+        // }) 
+        // var time3 = new Promise(function(resolve, reject) {
+        //     console.log(a);
+        //     setTimeout(function() {
+        //         resolve('xiexie')
+        //     }, 2000)
+        // }) 
+        // var fn = data => { console.log(data) };
+        // time.then(fn, msg => {
+        //     console.log('失败了');
+        // })
+        // Promise.all([time, time2, time3]).then(data => {
+        //     // 返回成功的参数集合
+        //     console.log(data);
+        // }, msg => {
+        //     console.log('失败了')
+        // })
+
+
+
+        // 异常错误捕获
+        try {
+            console.log('1111');
+        }catch (e) {
+            console.log(e);
+        }
+        console.log('我')
+    </script>
+</body>
+</html>
