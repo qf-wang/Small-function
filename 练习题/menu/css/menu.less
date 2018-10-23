@@ -2,43 +2,51 @@
 .set-menu {
     width: 300px;
     padding: 10px;
-    background-color: #eee;
+    background-color: #000;
     color: lighten(#000, 10%);
-    &>ul{
+    
+    .load-more {
+        border: #000 1px solid;
+        text-align: center;
+        line-height: 30px;
+    }
+    &>li {
         background-color: #fff;
+        list-style: none;
+        cursor: pointer;
         .load-more {
-            text-align: center;
-            line-height: 40px;
-            background-color: #888;
+            background: #eee;
         }
-        li {
-            list-style: none;
-            cursor: pointer;
-            .title {
-                padding: 10px 8px;
-                border-bottom: 1px solid lighten(@color, 40%);
-                overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                span {
-                    
-                    &+small {
-                        font-size: 12px;
-                        color: lighten(@color, 10%);
-                    }
-                }
-                .qf, .btn {
-                    float: right;
-                    color:  @color;
-                }
-                .btn {
-                    color:  #fff;
+        .title {
+            padding: 10px 8px;
+            border-bottom: 1px solid lighten(@color, 40%);
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            span {
+                
+                &+small {
+                    font-size: 12px;
+                    color: lighten(@color, 10%);
                 }
             }
-            ul {
-            //    background-color: lighten(@color, 42%);
+            .qf, .btn {
+                float: right;
+                color:  @color;
+            }
+            .btn {
+                color:  #fff;
+            }
+        }
+        ul {
+           background-color: #eee;
+           .load-more{
+                width: 98%;
+                margin: 0 auto;
+                background: #999;
+           }
 
-            }
         }
+        
     }
 }

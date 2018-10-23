@@ -4,24 +4,19 @@ var menu = (function () {
             this.$ulbox = $('.set-menu');
             // 菜单栏中显示的标题
             this.getData().then(data => {
-                this.insertData(this.$ulbox, data, 1);
-                // 所有标题
-                this.$title = this.$ulbox.find('.title');
-                // 所有ul
+                this.data = data;
+                this.insertLazyData(this.$ulbox, data, 1);
                 this.$ul = this.$ulbox.find('ul');
                 this.events();
-
-                this.lazyLoding();
             })
         },
         events() {
             var _this = this;
-            this.$ulbox.find("li:has(ul)>.title").on("click", function () {
-                console.log(1)
+            this.$ulbox.on("click", "li:has(ul)>.title",function () {
                 $(this).next().slideToggle();
                 $(this).children("i").toggleClass("shop-arrow-down").toggleClass("shop-arrow-up");
             })
-            this.$title.on('click', '.btn', function () {
+            this.$ulbox.on('click', '.title .btn', function () {
                 // 调用弹窗,显示
                 var model = new Model();
                 // 括号内传入展示内容
@@ -30,8 +25,16 @@ var menu = (function () {
                 console.log(parent2)
                 model.show(`${parent.parent().parent().index()}-${parent.index()}`);
             })
-
-
+            this.$ulbox.on('click', '.load-more',function () {
+                //  获取索引找到对应的数据
+                if($(this).attr('data-lever') == 1) {
+                    _this.insertData(_this.$ulbox, _this.data.slice(2), 1);
+                } else {
+                    var i = $(this).parent().parent().index();
+                    _this.insertData($(this).parent(), _this.data[i].child.slice(2), 2);
+                }
+                $(this).remove();
+            });
         },
 
         // 获取数据   
@@ -44,19 +47,38 @@ var menu = (function () {
             })
         },
         insertData(dom, data, levels) {
-            let ul = $('<ul></ul>');
-            // ul.className = 'menu';
-            // debugger
             for (var i = 0; i < data.length; i++) {
                 let li = $('<li></li>');
                 let liContent = this.dom(data[i].name, data[i].content, levels);
                 li.append(liContent);
                 if (data[0].child) {
-                    this.insertData(li, data[i].child, 2);
+                    let ul = $('<ul></ul>');
+                    this.insertLazyData(ul, data[i].child, 2);
+                    li.append(ul);
                 }
-                ul.append(li)
+                dom.append(li)
             }
-            dom.append(ul);
+        },
+        insertLazyData(dom, data, levels) {
+            // let ul = $('<ul></ul>');
+            // ul.className = 'menu';
+            // debugger
+            var length = data.length > 2 ? 2 : data.length;
+            for (var i = 0; i < length; i++) {
+                let li = $('<li></li>');
+                let liContent = this.dom(data[i].name, data[i].content, levels);
+                li.append(liContent);
+                if (data[0].child) {
+                    let ul = $('<ul></ul>');
+                    this.insertLazyData(ul, data[i].child, 2);
+                    li.append(ul);
+                }
+                dom.append(li)
+            }
+            if(data.length > 2)
+                dom.append(`<li class="load-more" data-lever=${levels}>加载更多</li>`);
+
+            // dom.append(ul);
 
         },
         dom: function (name, content, levels) {
@@ -75,47 +97,9 @@ var menu = (function () {
                     </div>
                     `
         },
-        lazyLoding() {
-            const length = this.$ul.each(function () {
-                var length = $(this).children('li').length;
-                if (length > 2) {
-                    //让多于的li隐藏   
-                    $(this).append('<li class="load-more">加载更多</li>');
-                }
-            });
-            $('.load-more').on('click', function () {
-                $(this).css('display', 'none');
+        lazyLoding() {  
 
-            });
         }
 
     }
 })()
-class menuTree {
-    constructor() {
-
-    }
-    //添加数据   
-    // 相同样式和属性,递归
-    // insertData(data) {
-    //     var frag = document.createDocumentFragment();
-    //     function createDom(dom, data) {
-    //         var ul = document.createElement('ul');
-    //         data.forEach((item, index) => {
-    //             var li = document.createElement('li');
-    //             var div = document.createElement('div');
-    //             div.innerHTML = item.name + '<i class="qf qf-shop-reduce"></i>';
-    //             li.appendChild(div);
-    //             ul.appendChild(li);
-    //             // 如果存在child
-    //             if(item.child) {
-    //                 createDom(li, item.child);
-    //             }
-    //         })
-    //         dom.appendChild(ul);
-    //     }
-    //     createDom(frag, data);
-    //     console.log(this.$target);
-    //     this.$target[0].appendChild(frag);
-    // }
-}

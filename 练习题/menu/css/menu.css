@@ -1,37 +1,46 @@
 .set-menu {
   width: 300px;
   padding: 10px;
-  background-color: #eee;
+  background-color: #000;
   color: #1a1a1a;
 }
-.set-menu > ul {
-  background-color: #fff;
-}
-.set-menu > ul .load-more {
+.set-menu .load-more {
+  border: #000 1px solid;
   text-align: center;
-  line-height: 40px;
-  background-color: #888;
+  line-height: 30px;
 }
-.set-menu > ul li {
+.set-menu > li {
+  background-color: #fff;
   list-style: none;
   cursor: pointer;
 }
-.set-menu > ul li .title {
+.set-menu > li .load-more {
+  background: #eee;
+}
+.set-menu > li .title {
   padding: 10px 8px;
   border-bottom: 1px solid #eeeeee;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.set-menu > ul li .title span + small {
+.set-menu > li .title span + small {
   font-size: 12px;
   color: #a2a2a2;
 }
-.set-menu > ul li .title .qf,
-.set-menu > ul li .title .btn {
+.set-menu > li .title .qf,
+.set-menu > li .title .btn {
   float: right;
   color: #888;
 }
-.set-menu > ul li .title .btn {
+.set-menu > li .title .btn {
   color: #fff;
+}
+.set-menu > li ul {
+  background-color: #eee;
+}
+.set-menu > li ul .load-more {
+  width: 98%;
+  margin: 0 auto;
+  background: #999;
 }
