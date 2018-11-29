@@ -14,7 +14,7 @@
   background-color: rgba(0, 0, 0, 0.4);
 }
 .model-dialog .model-content {
-  padding: 20px 10px;
+  padding: 20px;
   width: 400px;
   background-color: #fff;
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
@@ -23,10 +23,33 @@
   text-align: center;
 }
 .model-dialog .model-content .model-header .close {
+  color: #000;
   float: right;
 }
 .model-dialog .model-content .model-body {
+  display: flex;
+  align-items: center;
   min-height: 100px;
+}
+.model-dialog .model-content .model-body i {
+  font-weight: 600;
+  font-size: 30px;
+  margin-right: 10px;
+}
+.model-dialog .model-content .model-body i.qf-shop-error {
+  color: #f56c6c;
+}
+.model-dialog .model-content .model-body i.qf-shop-info {
+  color: #409eff;
+}
+.model-dialog .model-content .model-body i.qf-shop-warning {
+  color: #e6a23c;
+}
+.model-dialog .model-content .model-body i.qf-shop-success {
+  color: #67c23a;
+}
+.model-dialog .model-content .model-body p {
+  flex-grow: 1;
 }
 .model-dialog .model-content .model-footer {
   text-align: right;
