@@ -52,14 +52,27 @@ class WaterFallBase {
             div.style.height = data[i].height * 200 / data[i].width + 'px'; 
             const img = document.createElement('img');
             img.src = data[i].img;
-            div.appendChild(img);
+            this.loadImage(img)
+            .then(img => {
+                div.appendChild(img);
+            })
+            .catch(img => {
+                
+            })
             this.$liAll[index].appendChild(div);
 
         }
     }
     // 加载图片
-    loadImage() {
-        
+    loadImage($img) {
+        return new Promise((resolve, reject) => {
+            $img.onload = function() {
+                resolve($img)
+            }
+            $img.onerror = function() {
+                reject($img);
+            }
+        })
     }
     // 计算最短
     countShort() {
