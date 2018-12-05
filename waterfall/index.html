@@ -89,12 +89,15 @@
             resize: true,
             ajax: {
                 url: 'https://dev.91jianke.com:1091/id_v2_5/search_img',
-                page_num: 1,
-                page_size: 40,
-                q: '世界杯'
+                data: {
+                    page_num: 1,
+                    page_size: 20  
+                }
             }
-
         })
+        btn.onclick = function() {
+            waterFall.create(inp.value);
+        }
     </script>
 </body>
 
