@@ -52,12 +52,14 @@ class WaterFallBase {
             div.style.height = data[i].height * 200 / data[i].width + 'px'; 
             const img = document.createElement('img');
             img.src = data[i].img;
-            this.loadImage(img)
+            this.loadImage(img, data[i])
             .then(img => {
                 div.appendChild(img);
             })
             .catch(img => {
-                
+                console.log('加载失败')
+                img.src = `http://via.placeholder.com/${data[i].width}x${data[i].height}`;
+                div.appendChild(img);
             })
             this.$liAll[index].appendChild(div);
 
