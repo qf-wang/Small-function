@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" id="inp" v-model="name">
+        <input type="text" id="inp" v-model="name">
+        <p>{{name}}</p>
+        <p>{{age}}</p>
+    </div>
+    <button id="btn">点击</button>
+    <!-- 发布订阅 -->
+    <script src="js/Dep.js"></script>
+    <!-- 模板引擎 -->
+    <script src="js/Compile.js"></script>
+    <!-- 劫持数据，当数据修改后,触发回调 -->
+    <script src="js/Observer.js"></script>
+    <!-- 连接器,把上面串联起来使用 -->
+    <script src="js/vue.js"></script>
+    <script>
+        // btn.onclick = function() {
+        //     myapp.name = inp.value;
+        // }
+        var myapp = new Vue({
+            $el: '#app',
+            data: {
+                name: 'Hello World',
+                age: 18
+            }
+        })
+        
+        
+    
+    </script>
+</body>
+</html>
