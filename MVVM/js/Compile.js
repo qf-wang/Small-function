@@ -16,6 +16,7 @@ class Compile {
             const text = node.textContent
             // 获取里面的属性{{}}
             if(text && reg.test(text)) {
+                // 更新文本内容, 添加监听器
                 _this.compileText(node,  reg.exec(text)[1]);
             }
             // 获取v-model
