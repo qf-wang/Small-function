@@ -13,6 +13,10 @@ class BinarySearchTree {
     }
     // 添加一个元素
     insert(key) {
+        var node = root;
+        const newNode = new Node(key);
+        node = newNode;
+        root == null ?  root = newNode : insertNode(root, newNode);
         function insertNode (node, newNode) {
             if(node.key > newNode.key) {
                 if(node.left === null) {
@@ -28,43 +32,80 @@ class BinarySearchTree {
                 }
             }
         }
-        const newNode = new Node(key);
-        root == null ?  root = newNode : insertNode(root, newNode);
 
     }
-    // 查找某一个元素 
+    // 查找某一个元素, 存在就发你true
     search(key) {
-        
+        var node = root;
+        while(node) {
+            if(key > node.key) {
+                node = node.right;
+            } else if(key < node.key) {
+                node = node.left
+            } else if(key === node.key) {
+                return true;
+            }
+        }
+        return false;
     }
     // 删除一个元素
+    // 第一种：如果没有左节点也没有右节点， 直接删除
+    // 第二种：如果只有左节点，或者右节点，补上 
+    // 第三种：如果两个节点都有，那需要从左边子节点中找到最大的一个补上
     remove(key) {
-
+        const removeNode =  (node, key) => {
+            if(node === null) {
+                return null;
+            }
+            if(node.key == key) {
+                if(!node.left && !node.right) {
+                    node = null;
+                }  else if(node.left === null) {
+                    node = node.right
+                } else if (node.right === null){
+                    node = node.left;
+                } else {
+                    // 找到左边最大的一个替换, 或者右边最小的一个
+                    var aux = this.findMinNode(node.right);
+                    node.key = aux.key;
+                    // 删除找到的元素
+                    node.right = removeNode(node.right, aux.key);
+                }
+            } else if(node.key > key) {
+                node.left = removeNode(node.left, key);
+            } else if(node.key < key) {
+                node.right = removeNode(node.right, key);   
+            }
+            return node;
+        }
+        root = removeNode(root, key);
+    }
+    // 未来写成私有方法
+    findMinNode(node) {
+        if(node) {
+            while(node && node.left !== null) {
+                node = node.left;
+            }
+            return node;
+        }
+        return null;
     }
     // 获取最小值
     min() {
-        function minNode(node) {
-            if(node) {
-                while(node && node.left !== null) {
-                    node = node.left;
-                }
-                return node.key;
+        return this.findMinNode(root).key;
+    }
+    findMaxNode(node) {
+        if(node) {
+            while(node && node.right !== null) {
+                node = node.right;
             }
-            return null;
+            return node.key;
         }
-        return minNode(root);
+        return null;
     }
     // 获取最大值
     max() {
-        function maxNode(node) {
-            if(node) {
-                while(node && node.right !== null) {
-                    node = node.right;
-                }
-                return node.key;
-            }
-            return null;
-        }
-        return maxNode(root);
+        return this.findMaxNode(root).key;
     }
     // 中序遍历所有节点, 从最小的访问到最大的节点
     /**
@@ -132,4 +173,7 @@ tree.insert(6);
 // tree.postOrderTraverse(x => {
 //     console.log(x);
 // })
-console.log(tree.max());
+tree.remove(15);
+console.log(root);
+console.log(tree.search(6));
+
