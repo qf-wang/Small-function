@@ -4,19 +4,11 @@ class WaterFall extends WaterFallBase {
     // this.create();
     // ajax的配置数据
     // ajax设置默认值
-    this.ajax = {
-      url: 'https://dev.91jianke.com:1091/id_v2_5/search_img',
-      data: {
-          // page_num: 1,
-          page_size: 40,
-          q: '' 
-      }
-    }
-    Object.assign(this.ajax, target.ajax);
     this.imageData = []; //用来存储加载的数据,
     if(target.lazyLoad) this.lazyLoad();
     if(target.resize) this.resize();
   }
+  // 重新构建
   create(words) {
     this.getData(words).then(data => {
       data = JSON.parse(data).data;
@@ -24,6 +16,7 @@ class WaterFall extends WaterFallBase {
       this.insertData(data);
     });
   }
+  // 更新数据
   update() {
     return this.getData().then(data => {
       data = JSON.parse(data).data;

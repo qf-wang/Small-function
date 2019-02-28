@@ -7,9 +7,30 @@
     <title>Document</title>
 </head>
 <body>
-    <script src="deepCopy.js"></script>
+    <script src="data_structure/Stack.js"></script>
     <script>
+        var stack = new Stack();
+        stack.push(10);
+        stack.push('a');
+
+        console.log(stack.print());
        
+        var by2 = baseConverter(80, 2);
+        console.log(by2);
+
+        var bool = isBracketsBalanced('(())');
+        console.log(bool); // t
+        bool = isBracketsBalanced('(()');
+        console.log(bool); //f
+        bool = isBracketsBalanced('))((');
+        console.log(bool); //f
+        bool = isBracketsBalanced('(1(2(3)))');
+        console.log(bool); //t
+        bool = isBracketsBalanced('{(([你好世界])([]))}');
+        console.log(bool); //t
+        bool = isBracketsBalanced('{([)]}');
+        console.log(bool); //f
+
     </script>
 </body>
 </html>

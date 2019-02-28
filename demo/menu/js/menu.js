@@ -43,7 +43,6 @@ var menu = (function () {
                 data = $.getJSON('json/menu.json', data => {
                     resolve(data);
                 });
-
             })
         },
         insertData(dom, data, levels) {
