@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .a {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+    <button id="a">哈哈哈</button>
+    <script>
+      // 函数中this指向
+      // 闭包
+      // 堆内存
+      //    对象数据类型或者函数数据类型在定义的时候首先会开辟一个堆内存，堆内存有一个引用的地址，如果外面有变量等于了这个地址，
+      //    我们就说这个内存被占用了，就不能销毁了我们想要让堆内存释放/销毁，只要把所有引用它的变量赋值为null即可,
+      //    如果当前的堆内存没有任何东西被占用了，那么浏览器会在空闲的时候把它销毁...
+      // 栈内存 
+      //  全局作用域
+      //    只有当页面关闭的时候全局作用域才会销毁
+      // 私有作用域（只有函数执行会产生私有的作用域）
+      //    一般情况下，函数执行会形成一个新的私有作用域,当私有作用域中的代码中下完成后，我们当前作用域都会主动的进行释放和销毁
+      //    但是如果函数作用域内的内存被外部使用,将不会被销毁.
+
+
+
+
+      // 内存溢出： out of memory，是指程序在申请内存时，没有足够的内存空间供其使用。(程序要的内存, 系统给不了)
+      // 内存泄露: memory leak，是指程序在申请内存后，无法释放已申请的内存空间，一次内存泄露危害可以忽略，
+      //                       但内存泄露堆积后果很严重，无论多少内存,迟早会被占光。(内存使用后, 没有及时清理)
+
+      function fn(num) {
+        var obj = {};
+        return obj;
+      }
+      var arr = [];
+      a.onclick = function() {
+        for(var a = 0; a < 1000; a++) {
+          let b = fn();
+          arr.push(b);
+        }
+      }
+
+    </script>
+</body>
+</html>
