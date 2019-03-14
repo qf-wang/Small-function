@@ -23,10 +23,17 @@ function Compile(el, vm) {
           console.log(attrArr)
           var attr = null;
           var val = vm;
-          while(attr = attrArr.shift()) {
+          // 添加观察者
+          // 传如vm, x 的目的是为了获取当前最新值传给回掉函数，进行更新
+          new Watcher(vm, attrArr, function(val) {
+            child.textContent = child.textContent.replace(x, val); 
+            x = val; 
+          });
+          attrArr.forEach(attr => {
             val = val[attr];
-          }
+          })
           child.textContent = child.textContent.replace(x, val);
+          x = val;
         })
         console.log(arr)
       } else if (child.nodeType == 1) {

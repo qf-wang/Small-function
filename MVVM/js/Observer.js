@@ -1,6 +1,7 @@
 // 观察者, 监听对象中的每一个属性
 // 利用对象Object.defineProperty()劫持每一个属性
 function Observer(data) {
+  var dep = new Dep(); // 给每一个对象设定一个发布
   if (typeof data !== 'object') {
     return null;
   }
@@ -12,6 +13,8 @@ function Observer(data) {
     Object.defineProperty(data, attr, {
       enumerable: true,
       get() {
+        // 添加监听者
+        Dep.target && dep.add(Dep.target);
         return val;
       },
       set(value) {
@@ -20,6 +23,8 @@ function Observer(data) {
         console.log('监听修改')
         // 深度响应式， 如果还是对象，再劫持每一个属性
         Observer(value);
+
+        dep.notify()
       }
     })
   }
