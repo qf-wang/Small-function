@@ -14,23 +14,20 @@ Dep.prototype.notify = function() {
 
 
 function Watcher(vm, exp, fn) {
-  debugger
+  // debugger
   this.vm = vm; // data 数据
   this.exp = exp; // obj.a.a 获取哪一个数据
   this.fn = fn;
   Dep.target = this;
   var val = this.vm;
-  exp.forEach(x => {
-    val = val[x];
+  exp.forEach(attr => {
+    attr = attr.slice(2, -2);
+    getValue(attr, vm);
   })
   Dep.target = null;
 
 }
 Watcher.prototype.update = function() {
-  debugger
   var val = this.vm;
-  this.exp.forEach(x => {
-    val = val[x];
-  })
-  this.fn(val);
+  this.fn(this.vm);
 }
