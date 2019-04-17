@@ -8,16 +8,20 @@
 </head>
 <body>
     <div id="app">
+        基本信息如下：
         <input type="text" id="inp" v-model="name">
         <input type="text" id="inp" v-model="name">
-        <p>{{name}}</p>
-        <p>{{age}}</p>
+        <p>名字是:{{obj.obj.name}}, 年龄{{age}}</p>
+        <p>
+            年龄是:<span>{{obj.age}}</span>
+            性别是:<span>{{obj.sex}}</span>
+        </p>
     </div>
     <button id="btn">点击</button>
     <!-- 发布订阅 -->
     <script src="js/Dep.js"></script>
     <!-- 模板引擎 -->
-    <script src="js/Compile.js"></script>
+    <script src="js/Compile.1.js"></script>
     <!-- 劫持数据，当数据修改后,触发回调 -->
     <script src="js/Observer.js"></script>
     <!-- 连接器,把上面串联起来使用 -->
@@ -29,8 +33,16 @@
         var myapp = new Vue({
             $el: '#app',
             data: {
-                name: 'Hello World',
-                age: 18
+                name: '亚索',
+                age: 18,
+                height: '183cm',
+                obj: {
+                    age: 19,
+                    sex: '女',
+                    obj: {
+                        name: 'lilei'
+                    }
+                }
             }
         })
         
